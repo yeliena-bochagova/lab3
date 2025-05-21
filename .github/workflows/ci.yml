@@ -1,0 +1,55 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ main, master, cleaning-feature-docker-ci ]
+  pull_request:
+    branches: [ main, master, cleaning-feature-docker-ci ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: cleaningdb
+          POSTGRES_USER: cleaninguser
+          POSTGRES_PASSWORD: cleaningpass
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      POSTGRES_DB: cleaningdb
+      POSTGRES_USER: cleaninguser
+      POSTGRES_PASSWORD: cleaningpass
+      DATABASE_URL: postgres://cleaninguser:cleaningpass@localhost:5432/cleaningdb
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run migrations
+      run: |
+        python manage.py migrate
+
+    - name: Run tests
+      run: |
+        python manage.py test
+EOF
