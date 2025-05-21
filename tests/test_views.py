@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from ..models import Client, ServiceType, ServiceRequest
+from crm.models import Client, ServiceType, ServiceRequest
 from django.utils import timezone
 from datetime import timedelta
 
