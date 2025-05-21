@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Client, ServiceRequest, ServiceType
 from django import forms
-
+from django.shortcuts import render, redirect
+from .models import ServiceRequest
 # Форма для створення заявки
 class ServiceRequestForm(forms.ModelForm):
     class Meta:
@@ -13,19 +14,30 @@ def client_list(request):
     return render(request, 'crm/client_list.html', {'clients': clients})
 
 def request_list(request):
-    requests = ServiceRequest.objects.select_related('client', 'service_type').all()
+    requests = ServiceRequest.objects.all()
     return render(request, 'crm/request_list.html', {'requests': requests})
+
 
 def create_request(request):
     if request.method == 'POST':
-        form = ServiceRequestForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('request_list')
-    else:
-        form = ServiceRequestForm()
-    return render(request, 'crm/create_request.html', {'form': form})
+        client_id = request.POST.get('client')
+        service_type_id = request.POST.get('service_type')
+        date = request.POST.get('date')
+        comment = request.POST.get('comment')
 
+        # знайди об'єкти моделі
+        client = Client.objects.get(id=client_id)
+        service_type = ServiceType.objects.get(id=service_type_id)
+
+        ServiceRequest.objects.create(
+            client=client,
+            service_type=service_type,
+            date=date,
+            comment=comment
+        )
+        return redirect('index')
+
+    return redirect('index')
 
 def index(request):
     return render(request, 'main/index.html')
@@ -34,7 +46,7 @@ def about(request):
     return render(request, 'main/about.html')
 
 def blog(request):
-    return render(request, 'main/blog.html')
+    return render(request, 'main/blog-single.html')
 
 def blog_single(request):
     return render(request, 'main/blog-single.html')

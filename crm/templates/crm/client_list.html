@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Клієнти</h1>
+{% extends 'main/index.html' %}
+{% block content %}
+<h2>Clients</h2>
 <ul>
     {% for client in clients %}
-        <li>{{ client.name }} — {{ client.email }}</li>
+        <li>{{ client.name }} – {{ client.email }}</li>
     {% endfor %}
 </ul>
-
-</body>
-</html>
+{% endblock %}

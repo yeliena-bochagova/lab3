@@ -41,19 +41,19 @@
 		</div>
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	    	<a class="navbar-brand" href="index.html">Cleaning<span>company</span></a>
+	    	<a class="navbar-brand" href="{% url 'index' %}">Cleaning<span>company</span></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="fa fa-bars"></span> Menu
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	        	<li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-	        	<li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-	        	<li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+	        	<li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+	        	<li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+	        	<li class="nav-item"><a href="{% url 'services' %}" class="nav-link">Services</a></li>
+	        	<li class="nav-item"><a href="{% url 'portfolio' %}" class="nav-link">Portfolio</a></li>
+	        	<li class="nav-item"><a href="{% url 'pricing' %}" class="nav-link">Pricing</a></li>
+	          <li class="nav-item"><a href="{% url 'blog' %}" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -78,18 +78,19 @@
     		<div class="row d-md-flex justify-content-center">
     			<div class="col-md-12">
 	    			<div class="wrap-appointment bg-white d-md-flex pl-md-4 pb-5 pb-md-0">
-	    				<form action="#" class="appointment w-100">
+	    				<form action="{% url 'create_request' %}" method="post" class="appointment w-100">
+                        {% csrf_token %}
 	    					<div class="row justify-content-center">
 									<div class="col-12 col-md d-flex align-items-center pt-4 pt-md-0">
 										<div class="form-group py-md-4 py-2 px-4 px-md-0">
 											<label for="name">Name</label>
-				              <input type="text" class="form-control" placeholder="Your Name">
+				              <input type="text" class="form-control" name="name" placeholder="Your Name">
 				            </div>
 									</div>
 									<div class="col-12 col-md d-flex align-items-center">
 										<div class="form-group py-md-4 py-2 px-4 px-md-0">
 											<label for="name">Phone number</label>
-				              <input type="text" class="form-control" placeholder="Phone number">
+				              <input type="text" class="form-control" name="phone" placeholder="Phone number">
 				            </div>
 									</div>
 									<div class="col-12 col-md d-flex align-items-center">
@@ -98,14 +99,14 @@
 				    					<div class="form-field">
 		          					<div class="select-wrap">
 		                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
-		                      <select name="" id="" class="form-control">
+		                      <select name="service" id="" class="form-control">
 		                      	<option value="">Select Services</option>
-		                        <option value="">Spinal Manupulation</option>
-		                        <option value="">Electrotherapy</option>
-		                        <option value="">Manual Lymphatic</option>
-		                        <option value="">Medical Acupuncture</option>
-		                        <option value="">Therapeutic Exercise</option>
-		                        <option value="">Joint Mobilization</option>
+		                        <option value="Spinal Manipulation">Spinal Manupulation</option>
+		                        <option value="Electrotherapy">Electrotherapy</option>
+		                        <option value="Manual Lymphatic">Manual Lymphatic</option>
+		                        <option value="Medical Acupuncture">Medical Acupuncture</option>
+		                        <option value="Therapeutic Exercise">Therapeutic Exercise</option>
+		                        <option value="Joint Mobilization">Joint Mobilization</option>
 		                      </select>
 		                    </div>
 				              </div>
@@ -117,12 +118,12 @@
 				    					<div class="form-field">
 		          					<div class="select-wrap">
 		                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
-		                      <select name="" id="" class="form-control">
+		                      <select name="cleaner" id="" class="form-control">
 		                      	<option value="">Select Cleaners</option>
-		                        <option value="">John Doe</option>
-		                        <option value="">William Smith</option>
-		                        <option value="">Danny Green</option>
-		                        <option value="">Jason Thompson</option>
+		                        <option value="John Doe">John Doe</option>
+		                        <option value="William Smith">William Smith</option>
+		                        <option value="Danny Green">Danny Green</option>
+		                        <option value="Jason Thompson">Jason Thompson</option>
 		                      </select>
 		                    </div>
 				              </div>
@@ -481,7 +482,7 @@
 	    				</a>
             	<div class="desc w-100 px-4 text-center pt-5 mt-5">
 	              <div class="text w-100 mb-3 mt-4">
-	              	<h2><a href="work-single.html">House Cleaning</a></h2>
+	              	<h2><a href="{% url 'blog-single' %}">House Cleaning</a></h2>
 	              </div>
               </div>
             </div>
@@ -493,7 +494,7 @@
 	    				</a>
             	<div class="desc w-100 px-4 text-center pt-5 mt-5">
 	              <div class="text w-100 mb-3 mt-4">
-	              	<h2><a href="work-single.html">Window Cleaning</a></h2>
+	              	<h2><a href="{% url 'blog-single' %}">Window Cleaning</a></h2>
 	              </div>
               </div>
             </div>
@@ -505,7 +506,7 @@
 	    				</a>
             	<div class="desc w-100 px-4 text-center pt-5 mt-5">
 	              <div class="text w-100 mb-3 mt-4">
-	              	<h2><a href="work-single.html">Pool Cleaning</a></h2>
+	              	<h2><a href="{% url 'blog-single' %}">Pool Cleaning</a></h2>
 	              </div>
               </div>
             </div>
@@ -517,7 +518,7 @@
 	    				</a>
             	<div class="desc w-100 px-4 text-center pt-5 mt-5">
 	              <div class="text w-100 mb-3 mt-4">
-	              	<h2><a href="work-single.html">Office Cleaning</a></h2>
+	              	<h2><a href="{% url 'blog-single' %}">Office Cleaning</a></h2>
 	              </div>
               </div>
             </div>
@@ -530,7 +531,7 @@
 	    				</a>
             	<div class="desc w-100 px-4 text-center pt-5 mt-5">
 	              <div class="text w-100 mb-3 mt-4">
-	              	<h2><a href="work-single.html">Carpet Cleaning</a></h2>
+	              	<h2><a href="{% url 'blog-single' %}">Carpet Cleaning</a></h2>
 	              </div>
               </div>
             </div>
@@ -542,7 +543,7 @@
 	    				</a>
             	<div class="desc w-100 px-4 text-center pt-5 mt-5">
 	              <div class="text w-100 mb-3 mt-4">
-	              	<h2><a href="work-single.html">Garden Cleaning</a></h2>
+	              	<h2><a href="{% url 'blog-single' %}">Garden Cleaning</a></h2>
 	              </div>
               </div>
             </div>
@@ -554,7 +555,7 @@
 	    				</a>
             	<div class="desc w-100 px-4 text-center pt-5 mt-5">
 	              <div class="text w-100 mb-3 mt-4">
-	              	<h2><a href="work-single.html">Carpet Cleaning</a></h2>
+	              	<h2><a href="{% url 'blog-single' %}">Carpet Cleaning</a></h2>
 	              </div>
               </div>
             </div>
@@ -566,7 +567,7 @@
 	    				</a>
             	<div class="desc w-100 px-4 text-center pt-5 mt-5">
 	              <div class="text w-100 mb-3 mt-4">
-	              	<h2><a href="work-single.html">Pool Cleaning</a></h2>
+	              	<h2><a href="{% url 'blog-single' %}">Pool Cleaning</a></h2>
 	              </div>
               </div>
             </div>
@@ -586,7 +587,7 @@
         <div class="row d-flex">
           <div class="col-md-6 col-lg-4 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url({% static 'images/image_1.jpg' %});">
+              <a href="{% url 'blog-single' %}" class="block-20 rounded" style="background-image: url({% static 'images/image_1.jpg' %});">
               </a>
               <div class="text mt-3 px-4">
               	<div class="posted mb-3 d-flex">
@@ -603,7 +604,7 @@
           </div>
           <div class="col-md-6 col-lg-4 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url({% static 'images/image_2.jpg' %});">
+              <a href="{% url 'blog-single' %}" class="block-20 rounded" style="background-image: url({% static 'images/image_2.jpg' %});">
               </a>
               <div class="text mt-3 px-4">
               	<div class="posted mb-3 d-flex">
@@ -620,7 +621,7 @@
           </div>
           <div class="col-md-6 col-lg-4 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url({% static 'images/image_3.jpg' %});">
+              <a href="{% url 'blog-single' %}" class="block-20 rounded" style="background-image: url({% static 'images/image_3.jpg' %});">
               </a>
               <div class="text mt-3 px-4">
               	<div class="posted mb-3 d-flex">
