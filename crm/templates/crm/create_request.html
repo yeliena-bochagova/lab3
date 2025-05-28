@@ -1,0 +1,63 @@
+{% extends 'main/index.html' %}
+
+{% block content %}
+  <!-- Весь ваш контент, включаючи форму -->
+  <form method="POST" action="{% url 'submit_request' %}">
+    {% csrf_token %}
+    <div class="row justify-content-center">
+      <div class="col-12 col-md d-flex align-items-center pt-4 pt-md-0">
+        <div class="form-group py-md-4 py-2 px-4 px-md-0">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" name="name" placeholder="Your Name">
+        </div>
+      </div>
+      <div class="col-12 col-md d-flex align-items-center">
+        <div class="form-group py-md-4 py-2 px-4 px-md-0">
+          <label for="phone">Phone number</label>
+          <input type="text" class="form-control" name="phone" placeholder="Phone number">
+        </div>
+      </div>
+      <div class="col-12 col-md d-flex align-items-center">
+        <div class="form-group py-md-4 py-2 px-4 px-md-0">
+          <label for="service">Select Services</label>
+          <div class="form-field">
+            <div class="select-wrap">
+              <div class="icon"><span class="fa fa-chevron-down"></span></div>
+              <select name="service" class="form-control">
+                <option value="">Select Services</option>
+                <option value="Spinal Manipulation">Spinal Manipulation</option>
+                <option value="Electrotherapy">Electrotherapy</option>
+                <option value="Manual Lymphatic">Manual Lymphatic</option>
+                <option value="Medical Acupuncture">Medical Acupuncture</option>
+                <option value="Therapeutic Exercise">Therapeutic Exercise</option>
+                <option value="Joint Mobilization">Joint Mobilization</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md d-flex align-items-center pb-4 pb-md-0">
+        <div class="form-group py-md-4 py-2 px-4 px-md-0">
+          <label for="cleaner">Cleaner</label>
+          <div class="form-field">
+            <div class="select-wrap">
+              <div class="icon"><span class="fa fa-chevron-down"></span></div>
+              <select name="cleaner" class="form-control">
+                <option value="">Select Cleaners</option>
+                <option value="John Doe">John Doe</option>
+                <option value="William Smith">William Smith</option>
+                <option value="Danny Green">Danny Green</option>
+                <option value="Jason Thompson">Jason Thompson</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md d-flex align-items-center align-items-stretch">
+        <div class="form-group py-md-4 py-2 px-4 px-md-0 d-flex align-items-stretch bg-primary">
+          <input type="submit" value="Make an Appointment" class="btn btn-primary py-3 px-4">
+        </div>
+      </div>
+    </div>
+  </form>
+{% endblock %}

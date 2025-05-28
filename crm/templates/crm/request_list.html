@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h2>Service Requests</h2>
+    <ul>
+    {% for request in requests %}
+      <li>{{ request.client }} – {{ request.service_type }} on {{ request.date }}</li>
+    {% empty %}
+      <li>No requests found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

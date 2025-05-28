@@ -1,0 +1,38 @@
+<!-- base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Cleaning Service{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- інші спільні CSS або meta -->
+  </head>
+  <body>
+    <header>
+      <!-- Спільний header з навігацією -->
+      <nav>
+        <ul>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <!-- інші посилання -->
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      {% block content %}
+      <!-- Унікальний контент сторінки з'явиться тут -->
+      {% endblock %}
+    </main>
+
+    <footer>
+      <!-- Спільний футер -->
+      <p>&copy; 2025 Cleaning Service</p>
+    </footer>
+
+    <!-- Підключення JavaScript файлів -->
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
