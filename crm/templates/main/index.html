@@ -78,8 +78,9 @@
     		<div class="row d-md-flex justify-content-center">
     			<div class="col-md-12">
 	    			<div class="wrap-appointment bg-white d-md-flex pl-md-4 pb-5 pb-md-0">
-	    				<form action="{% url 'create_request' %}" method="post" class="appointment w-100">
-                        {% csrf_token %}
+	    				<!-- Форма для створення заяви -->
+                        <form method="POST" action="{% url 'submit_request' %}">
+                            {% csrf_token %}
 	    					<div class="row justify-content-center">
 									<div class="col-12 col-md d-flex align-items-center pt-4 pt-md-0">
 										<div class="form-group py-md-4 py-2 px-4 px-md-0">
@@ -101,12 +102,12 @@
 		                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
 		                      <select name="service" id="" class="form-control">
 		                      	<option value="">Select Services</option>
-		                        <option value="Spinal Manipulation">Spinal Manupulation</option>
-		                        <option value="Electrotherapy">Electrotherapy</option>
-		                        <option value="Manual Lymphatic">Manual Lymphatic</option>
-		                        <option value="Medical Acupuncture">Medical Acupuncture</option>
-		                        <option value="Therapeutic Exercise">Therapeutic Exercise</option>
-		                        <option value="Joint Mobilization">Joint Mobilization</option>
+		                        <option value="Residential Cleaning Services">Residential Cleaning Services</option>
+		                        <option value="Seasonal Cleaning">Seasonal Cleaning</option>
+		                        <option value="Eco-Friendly Cleaning">Eco-Friendly Cleaning</option>
+		                        <option value="Office Cleaning">Office Cleaning</option>
+		                        <option value="Carpet & Upholstery Cleaning">Carpet & Upholstery Cleaning</option>
+		                        <option value="Pressure Washing">Pressure Washing</option>
 		                      </select>
 		                    </div>
 				              </div>

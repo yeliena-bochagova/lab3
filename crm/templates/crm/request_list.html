@@ -1,10 +1,11 @@
-{% extends 'main/index.html' %}
+{% extends 'main/base.html' %}
 {% block content %}
 <h2>Service Requests</h2>
-<a href="{% url 'create_request' %}">Create New Request</a>
-<ul>
+    <ul>
     {% for request in requests %}
-        <li>{{ request.client }} – {{ request.service_type }} on {{ request.date }}</li>
+      <li>{{ request.client }} – {{ request.service_type }} on {{ request.date }}</li>
+    {% empty %}
+      <li>No requests found.</li>
     {% endfor %}
-</ul>
+  </ul>
 {% endblock %}
